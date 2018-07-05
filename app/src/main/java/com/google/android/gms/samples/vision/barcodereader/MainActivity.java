@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.samples.vision.barcodereader.Firebase.LivePreviewActivity;
 import com.google.android.gms.vision.barcode.Barcode;
 
 import junit.framework.Test;
@@ -27,6 +28,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private CompoundButton useFlash;
     private TextView statusMessage;
     private TextView barcodeValue;
+    public static Boolean flash = false;
     public  static List<Barcode> barcode2 = new ArrayList<>();
     public static List<String> barcodeDisplay = new ArrayList<>();
     private static final int RC_BARCODE_CAPTURE = 9001;
@@ -38,7 +40,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (ListView)findViewById(R.id.list_view);
+
         statusMessage = (TextView)findViewById(R.id.status_message);
         barcodeValue = (TextView)findViewById(R.id.barcode_value);
 
@@ -48,6 +50,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.readbarcodexz).setOnClickListener(this);
         findViewById(R.id.read_barcode).setOnClickListener(this);
         findViewById(R.id.clear).setOnClickListener(this);
+        findViewById(R.id.firebase).setOnClickListener(this);
         String test =" ";
         if(barcodeDisplay.size() != 0) {
             for (String s : barcodeDisplay) {
@@ -79,12 +82,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
        else if (v.getId() == R.id.readbarcodexz) {
             // launch barcode activity.
 
-            Intent intent = new Intent(this, XZingActivity.class);
+           Intent intent = new Intent(this, XZingActivity.class);
+
+            startActivity(intent);
+        } else if (v.getId() == R.id.firebase) {
+            // launch barcode activity.
+            flash = useFlash.isChecked();
+            Intent intent = new Intent(this, LivePreviewActivity.class);
 
             startActivity(intent);
         }
         else if (v.getId() == R.id.clear) {
-            // launch barcode activity.
+
 
            barcode2.clear();
            barcodeDisplay.clear();

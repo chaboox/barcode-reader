@@ -23,8 +23,8 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-import me.dm7.barcodescanner.core.BarcodeScannerView;
-import me.dm7.barcodescanner.core.DisplayUtils;
+//import me.dm7.barcodescanner.core.BarcodeScannerView;
+//import me.dm7.barcodescanner.core.DisplayUtils;
 
 public class ZXingScannerViewEdit extends BarcodeScannerView {
     private static final String TAG = "ZXingScannerView";
