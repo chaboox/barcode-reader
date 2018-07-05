@@ -1,18 +1,4 @@
-/*
- * Copyright (C) The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package com.google.android.gms.samples.vision.barcodereader;
 
 import android.Manifest;
@@ -54,11 +40,7 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
-/**
- * Activity for the multi-tracker app.  This app detects barcodes and displays the value with the
- * rear facing camera. During detection overlay graphics are drawn to indicate the position,
- * size, and ID of each barcode.
- */
+
 public final class BarcodeCaptureActivity extends AppCompatActivity implements BarcodeGraphicTracker.BarcodeUpdateListener {
     private static final String TAG = "Barcode-reader";
 
@@ -386,7 +368,8 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
-            return onTap(e.getRawX(), e.getRawY()) || super.onSingleTapConfirmed(e);
+          return true;
+            // for now we don't need to choose return onTap(e.getRawX(), e.getRawY()) || super.onSingleTapConfirmed(e);
         }
     }
 
@@ -450,20 +433,20 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         Log.d(TAG, "onBarcodeDetected: "+barcode.rawValue+" "+barcode.format+" "+barcode.valueFormat);
 
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-       // if (vibrator.hasVibrator()) {
+       // if (vibrator.hasVibrator())
             vibrator.vibrate(200); // for 200 ms
-       /* if((!MainActivity.barcodeDisplay.contains(barcode.displayValue)) && (barcode != null))
-            MainActivity.barcodeDisplay.add(barcode.displayValue);*/
-     //   }
+       if((!MainActivity.barcodeDisplay.contains(barcode.displayValue)) && (barcode != null))
+            MainActivity.barcodeDisplay.add(barcode.displayValue);
+
     }
     @Override
     public void onBackPressed() {
         Intent data = new Intent();
-        if(MainActivity.barcode2.size() != 0)
+       /* if(MainActivity.barcode2.size() != 0)
         {
             data.putExtra(BarcodeObject, MainActivity.barcode2.get(0));
             setResult(CommonStatusCodes.SUCCESS, data);
-        }
+        }*/
         finish();
     }
 }
