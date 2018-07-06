@@ -6,12 +6,15 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Vibrator;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.samples.vision.barcodereader.BarcodeData;
 import com.google.android.gms.samples.vision.barcodereader.Firebase.GraphicOverlay.Graphic;
 import com.google.android.gms.samples.vision.barcodereader.MainActivity;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -66,14 +69,19 @@ public class BarcodeGraphic extends Graphic {
         // Renders the barcode at the bottom of the box.
        // canvas.drawText(barcode.getRawValue(), rect.left, rect.bottom, barcodePaint);
         if(!MainActivity.barcodeDisplay.contains(barcode.getDisplayValue())){
+            int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+            int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Calendar c = Calendar.getInstance();
+            String date = sdf.format(c.getTime());
+            MainActivity.barcodeDisplayData.add(new BarcodeData(barcode.getDisplayValue(), "Code 39",currentHour+":"+currentMinute,date  ));
             MainActivity.barcodeDisplay.add(barcode.getDisplayValue());
             if(toast != null)
                 toast.cancel();
             toast = Toast.makeText(getApplicationContext(), barcode.getDisplayValue(), Toast.LENGTH_SHORT);
             toast.show();
             Vibrator vibrator = (Vibrator) LivePreviewActivity.c.getSystemService(Context.VIBRATOR_SERVICE);
-            Date currentTime = Calendar.getInstance().getTime();
-            int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+
             // if (vibrator.hasVibrator())
             vibrator.vibrate(200); // for 200 ms
         }

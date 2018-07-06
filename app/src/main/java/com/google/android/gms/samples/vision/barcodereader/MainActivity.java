@@ -1,11 +1,17 @@
 
 package com.google.android.gms.samples.vision.barcodereader;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
@@ -25,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity  extends AppCompatActivity implements View.OnClickListener {
 
     // use a compound button so either checkbox or switch widgets work.
     private CompoundButton autoFocus;
@@ -44,11 +50,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        myToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                Log.d(TAG, "onMenuItemClick:YOO ");
+                return true;
+            }
+        });
         listView=(ListView)findViewById(R.id.list_view);
         statusMessage = (TextView)findViewById(R.id.status_message);
-
         autoFocus = (CompoundButton) findViewById(R.id.auto_focus);
         useFlash = (CompoundButton) findViewById(R.id.use_flash);
         dataModelBarcodes = new ArrayList<>();
@@ -58,15 +73,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.firebase).setOnClickListener(this);
         String test =" ";
         if(barcodeDisplay.size() != 0) {
+            if(barcodeDisplayData.size() != 0)
+                for (BarcodeData bd  :barcodeDisplayData)
+                {
+                    // test = test + "  " + s;
+                    dataModelBarcodes.add(new DataModelBarcode(bd.getCode(), "Code 39", bd.getHour(), bd.getDate()));
+
+
+                }
+                else
             for (String s : barcodeDisplay) {
                // test = test + "  " + s;
-                dataModelBarcodes.add(new DataModelBarcode(s, "Code 39"));
+                dataModelBarcodes.add(new DataModelBarcode(s, "Code 39", "00:00","01/01/2018"));
 
 
             }
           //  barcodeValue.setText("" + test + "  " );
             adapter= new CustomAdapterBarcode(dataModelBarcodes,getApplicationContext());
-
             listView.setAdapter(adapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -74,11 +97,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                     DataModelBarcode dataModelClient = dataModelBarcodes.get(position);
 
-                    Snackbar.make(view, dataModelClient.getCode()+"\n"+ dataModelClient.getFormat(), Snackbar.LENGTH_LONG)
+                   /* Snackbar.make(view, dataModelClient.getCode()+"\n"+ dataModelClient.getFormat(), Snackbar.LENGTH_LONG)
                             .setAction("No action", null).show();
-
+                    */
                    /* Intent i = new Intent(ModifierClient.this,ModifierClientSelect.class);
-                    // Log.d("yoo", "  "+id);
                     i.putExtra("idUser",idU);
                     i.putExtra("idClient", dataModelClient.getId());
 
@@ -88,6 +110,33 @@ public class MainActivity extends Activity implements View.OnClickListener {
             });
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Log.d(TAG, "DKHALE: ");
+        switch (item.getItemId()) {
+            case R.id.setting_button:
+              Intent intent = new Intent(this, SettingsActivity.class);
+              startActivity(intent);
+                return true;
+
+
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //ajoute les entrées de menu_test à l'ActionBar
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
     }
 
     /**
@@ -110,7 +159,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
        else if (v.getId() == R.id.readbarcodexz) {
             // launch barcode activity.
 
-           Intent intent = new Intent(this, XZingActivity.class);
+           Intent intent = new Intent(this, LivePreviewActivity.class);
 
             startActivity(intent);
         } else if (v.getId() == R.id.firebase) {
@@ -125,6 +174,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
            barcode2.clear();
            barcodeDisplay.clear();
+           barcodeDisplayData.clear();
            listView.setAdapter(adapter);
            dataModelBarcodes.clear();
             adapter= new CustomAdapterBarcode(dataModelBarcodes,getApplicationContext());
@@ -173,7 +223,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     //barcode2.
                     for(String s :barcodeDisplay){
                        // test = test +"  "+ s;
-                        dataModelBarcodes.add(new DataModelBarcode(s, "Code 39"));
+                        dataModelBarcodes.add(new DataModelBarcode(s, "Code 39","00:00","01/01/2018"));
 
                     }
                    // barcodeValue.setText(""+test+"  ");
@@ -211,4 +261,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder adb=new AlertDialog.Builder(MainActivity.this);
+        adb.setMessage("Are you sure you want to quit ");
+        adb.setNegativeButton("Yes", new AlertDialog.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }});
+        adb.setPositiveButton("No", null);
+        adb.show();
+    }
+
 }

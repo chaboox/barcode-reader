@@ -39,6 +39,8 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 public final class BarcodeCaptureActivity extends AppCompatActivity implements BarcodeGraphicTracker.BarcodeUpdateListener {
@@ -437,16 +439,18 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
             vibrator.vibrate(200); // for 200 ms
        if((!MainActivity.barcodeDisplay.contains(barcode.displayValue)) && (barcode != null))
             MainActivity.barcodeDisplay.add(barcode.displayValue);
+        int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar c = Calendar.getInstance();
+        String date = sdf.format(c.getTime());
+        MainActivity.barcodeDisplayData.add(new BarcodeData(barcode.displayValue, "Code 39",currentHour+":"+currentMinute,date  ));
 
     }
     @Override
     public void onBackPressed() {
-        Intent data = new Intent();
-       /* if(MainActivity.barcode2.size() != 0)
-        {
-            data.putExtra(BarcodeObject, MainActivity.barcode2.get(0));
-            setResult(CommonStatusCodes.SUCCESS, data);
-        }*/
+        Intent data = new Intent(this, MainActivity.class);
+        startActivity(data);
         finish();
     }
 }

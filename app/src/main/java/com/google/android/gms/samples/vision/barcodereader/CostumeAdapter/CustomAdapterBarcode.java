@@ -24,6 +24,8 @@ public class CustomAdapterBarcode extends ArrayAdapter<DataModelBarcode> impleme
     private static class ViewHolder {
         TextView txtCode;
         TextView txtFormat;
+        TextView txtHour;
+        TextView txtDate;
         ImageView info;
     }
 
@@ -82,6 +84,8 @@ public class CustomAdapterBarcode extends ArrayAdapter<DataModelBarcode> impleme
             convertView = inflater.inflate(R.layout.row_item_barcode, parent, false);
             viewHolder.txtCode = (TextView) convertView.findViewById(R.id.code);
             viewHolder.txtFormat = (TextView) convertView.findViewById(R.id.format);
+            viewHolder.txtHour = (TextView) convertView.findViewById(R.id.hour);
+            viewHolder.txtDate = (TextView) convertView.findViewById(R.id.date);
             viewHolder.info = (ImageView) convertView.findViewById(R.id.item_info);
 
             result=convertView;
@@ -99,6 +103,8 @@ public class CustomAdapterBarcode extends ArrayAdapter<DataModelBarcode> impleme
 
         viewHolder.txtCode.setText(dataModelBarcode.getCode());
         viewHolder.txtFormat.setText(dataModelBarcode.getFormat());
+        viewHolder.txtHour.setText(dataModelBarcode.getHour());
+        viewHolder.txtDate.setText(dataModelBarcode.getDate());
         viewHolder.info.setOnClickListener(this);
         viewHolder.info.setTag(position);
         // Return the completed view to render on screen

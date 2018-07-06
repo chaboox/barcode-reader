@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-48:12
+ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-53:12
 MERGED from [com.google.firebase:firebase-core:16.0.0] C:\Users\sagar\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.0.aar\8c79a4da6edc0f55116fd7808c6eb390\AndroidManifest.xml:2:1-9:12
 MERGED from [me.dm7.barcodescanner:zxing:1.9] C:\Users\sagar\.gradle\caches\transforms-1\files-1.1\zxing-1.9.aar\5d8147c130f49589fb3a21db00b2e8df\AndroidManifest.xml:2:1-13:12
 MERGED from [com.android.support:design:26.1.0] C:\Users\sagar\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\827c3856e19f0c2e3afda9b218f2b57e\AndroidManifest.xml:17:1-31:12
@@ -45,20 +45,20 @@ MERGED from [com.android.support:support-compat:26.1.0] C:\Users\sagar\.gradle\c
 MERGED from [org.tensorflow:tensorflow-lite:0.1.7] C:\Users\sagar\.gradle\caches\transforms-1\files-1.1\tensorflow-lite-0.1.7.aar\54cd709825d97fc1e27621e20460edd1\AndroidManifest.xml:2:1-6:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\sagar\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\5266c47cfc46c230860d48f2c2b5b84d\AndroidManifest.xml:17:1-30:12
 MERGED from [com.google.android.gms:play-services-measurement-base:15.0.4] C:\Users\sagar\.gradle\caches\transforms-1\files-1.1\play-services-measurement-base-15.0.4.aar\ff8d2b8238711a6f2cdba31d7e08955a\AndroidManifest.xml:17:1-24:12
-INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-53:12
 	package
 		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:3:5-66
 		INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml
 		INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml
-		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-48:12
+		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-53:12
 		INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml
-		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-48:12
+		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-53:12
 		INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:11-69
@@ -77,7 +77,7 @@ ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:9:5-65
 	android:name
 		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:9:22-62
 application
-ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:11:5-46:19
+ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:11:5-51:19
 MERGED from [com.google.firebase:firebase-core:16.0.0] C:\Users\sagar\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.0.aar\8c79a4da6edc0f55116fd7808c6eb390\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-core:16.0.0] C:\Users\sagar\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.0.aar\8c79a4da6edc0f55116fd7808c6eb390\AndroidManifest.xml:7:5-20
 MERGED from [me.dm7.barcodescanner:zxing:1.9] C:\Users\sagar\.gradle\caches\transforms-1\files-1.1\zxing-1.9.aar\5d8147c130f49589fb3a21db00b2e8df\AndroidManifest.xml:11:5-20
@@ -217,11 +217,17 @@ ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:42:9-44:66
 	android:name
 		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:43:13-42
 activity#com.google.android.gms.samples.vision.barcodereader.Firebase.LivePreviewActivity
-ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:45:9-126
+ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:45:9-47:66
 	android:theme
-		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:45:64-114
+		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:47:13-63
 	android:name
-		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:45:19-63
+		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:46:13-57
+activity#com.google.android.gms.samples.vision.barcodereader.SettingsActivity
+ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:48:9-50:72
+	android:label
+		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:50:13-60
+	android:name
+		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:49:13-45
 uses-sdk
 INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml
@@ -527,11 +533,11 @@ ADDED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\sagar\.gr
 	android:name
 		ADDED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\sagar\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\e00bc77a2bb3832a87894628e1872ec8\AndroidManifest.xml:24:13-79
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-IMPLIED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-48:12 reason: org.tensorflow.lite has a targetSdkVersion < 4
+IMPLIED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-53:12 reason: org.tensorflow.lite has a targetSdkVersion < 4
 uses-permission#android.permission.READ_PHONE_STATE
-IMPLIED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-48:12 reason: org.tensorflow.lite has a targetSdkVersion < 4
+IMPLIED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-53:12 reason: org.tensorflow.lite has a targetSdkVersion < 4
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-IMPLIED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-48:12 reason: org.tensorflow.lite requested WRITE_EXTERNAL_STORAGE
+IMPLIED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:2:1-53:12 reason: org.tensorflow.lite requested WRITE_EXTERNAL_STORAGE
 meta-data#android.arch.lifecycle.VERSION
 ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\sagar\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\5266c47cfc46c230860d48f2c2b5b84d\AndroidManifest.xml:25:9-27:47
 	android:value

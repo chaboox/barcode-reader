@@ -67,6 +67,9 @@
         <activity
             android:name="com.google.android.gms.samples.vision.barcodereader.Firebase.LivePreviewActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="com.google.android.gms.samples.vision.barcodereader.SettingsActivity"
+            android:label="@string/title_activity_settings" />
 
         <meta-data
             android:name="android.support.VERSION"
