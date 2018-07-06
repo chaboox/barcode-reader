@@ -12,6 +12,9 @@ import com.google.android.gms.samples.vision.barcodereader.Firebase.GraphicOverl
 import com.google.android.gms.samples.vision.barcodereader.MainActivity;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class BarcodeGraphic extends Graphic {
 
     private static final int TEXT_COLOR = Color.WHITE;
@@ -69,6 +72,8 @@ public class BarcodeGraphic extends Graphic {
             toast = Toast.makeText(getApplicationContext(), barcode.getDisplayValue(), Toast.LENGTH_SHORT);
             toast.show();
             Vibrator vibrator = (Vibrator) LivePreviewActivity.c.getSystemService(Context.VIBRATOR_SERVICE);
+            Date currentTime = Calendar.getInstance().getTime();
+            int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
             // if (vibrator.hasVibrator())
             vibrator.vibrate(200); // for 200 ms
         }

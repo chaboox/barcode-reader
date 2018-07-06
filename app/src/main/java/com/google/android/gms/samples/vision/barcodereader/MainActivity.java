@@ -4,14 +4,18 @@ package com.google.android.gms.samples.vision.barcodereader;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.samples.vision.barcodereader.CostumeAdapter.CustomAdapterBarcode;
+import com.google.android.gms.samples.vision.barcodereader.CostumeAdapter.DataModelBarcode;
 import com.google.android.gms.samples.vision.barcodereader.Firebase.LivePreviewActivity;
 import com.google.android.gms.vision.barcode.Barcode;
 
@@ -27,26 +31,27 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private CompoundButton autoFocus;
     private CompoundButton useFlash;
     private TextView statusMessage;
-    private TextView barcodeValue;
     public static Boolean flash = false;
     public  static List<Barcode> barcode2 = new ArrayList<>();
     public static List<String> barcodeDisplay = new ArrayList<>();
+    public static List<BarcodeData> barcodeDisplayData = new ArrayList<>();
     private static final int RC_BARCODE_CAPTURE = 9001;
     private static final String TAG = "BarcodeMain";
     private ListView listView;
+    private ArrayList<DataModelBarcode> dataModelBarcodes;
+    private static CustomAdapterBarcode adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        listView=(ListView)findViewById(R.id.list_view);
         statusMessage = (TextView)findViewById(R.id.status_message);
-        barcodeValue = (TextView)findViewById(R.id.barcode_value);
 
         autoFocus = (CompoundButton) findViewById(R.id.auto_focus);
         useFlash = (CompoundButton) findViewById(R.id.use_flash);
-
+        dataModelBarcodes = new ArrayList<>();
         findViewById(R.id.readbarcodexz).setOnClickListener(this);
         findViewById(R.id.read_barcode).setOnClickListener(this);
         findViewById(R.id.clear).setOnClickListener(this);
@@ -54,10 +59,33 @@ public class MainActivity extends Activity implements View.OnClickListener {
         String test =" ";
         if(barcodeDisplay.size() != 0) {
             for (String s : barcodeDisplay) {
-                test = test + "  " + s;
+               // test = test + "  " + s;
+                dataModelBarcodes.add(new DataModelBarcode(s, "Code 39"));
+
 
             }
-            barcodeValue.setText("" + test + "  " );
+          //  barcodeValue.setText("" + test + "  " );
+            adapter= new CustomAdapterBarcode(dataModelBarcodes,getApplicationContext());
+
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    DataModelBarcode dataModelClient = dataModelBarcodes.get(position);
+
+                    Snackbar.make(view, dataModelClient.getCode()+"\n"+ dataModelClient.getFormat(), Snackbar.LENGTH_LONG)
+                            .setAction("No action", null).show();
+
+                   /* Intent i = new Intent(ModifierClient.this,ModifierClientSelect.class);
+                    // Log.d("yoo", "  "+id);
+                    i.putExtra("idUser",idU);
+                    i.putExtra("idClient", dataModelClient.getId());
+
+                    startActivity(i);*/
+
+                }
+            });
         }
 
     }
@@ -97,7 +125,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
            barcode2.clear();
            barcodeDisplay.clear();
-            barcodeValue.setText("");
+           listView.setAdapter(adapter);
+           dataModelBarcodes.clear();
+            adapter= new CustomAdapterBarcode(dataModelBarcodes,getApplicationContext());
 
         }
 
@@ -131,7 +161,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (barcodeDisplay.size() != 0) {
                   //  Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
-                    statusMessage.setText(R.string.barcode_success);
+                  //  statusMessage.setText(R.string.barcode_success);
                     String test = "  ";
                     String test2 = "  ";
                    // barcode2.add(barcode);
@@ -142,15 +172,36 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     }*/
                     //barcode2.
                     for(String s :barcodeDisplay){
-                        test = test +"  "+ s;
+                       // test = test +"  "+ s;
+                        dataModelBarcodes.add(new DataModelBarcode(s, "Code 39"));
 
                     }
-                    barcodeValue.setText(""+test+"  ");
+                   // barcodeValue.setText(""+test+"  ");
                    // Log.d(TAG, "Barcode read: " + barcode.displayValue);
                 } else {
-                    statusMessage.setText(R.string.barcode_failure);
+                  //  statusMessage.setText(R.string.barcode_failure);
                     Log.d(TAG, "No barcode captured, intent data is null");
                 }
+                adapter= new CustomAdapterBarcode(dataModelBarcodes,getApplicationContext());
+
+                listView.setAdapter(adapter);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        DataModelBarcode dataModelClient = dataModelBarcodes.get(position);
+
+                        Snackbar.make(view, dataModelClient.getCode()+"\n"+ dataModelClient.getFormat(), Snackbar.LENGTH_LONG)
+                                .setAction("No action", null).show();
+                   /* Intent i = new Intent(ModifierClient.this,ModifierClientSelect.class);
+                    // Log.d("yoo", "  "+id);
+                    i.putExtra("idUser",idU);
+                    i.putExtra("idClient", dataModelClient.getId());
+
+                    startActivity(i);*/
+
+                    }
+                });
             } else {
                 statusMessage.setText(String.format(getString(R.string.barcode_error),
                         CommonStatusCodes.getStatusCodeString(resultCode)));

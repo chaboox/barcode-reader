@@ -155,7 +155,7 @@ MERGED from [com.google.android.gms:play-services-measurement-base:15.0.4] C:\Us
 	android:supportsRtl
 		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:17:9-35
 	android:label
-		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:16:9-40
+		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:16:9-39
 	android:hardwareAccelerated
 		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:14:9-43
 	android:fullBackupContent
@@ -165,7 +165,7 @@ MERGED from [com.google.android.gms:play-services-measurement-base:15.0.4] C:\Us
 	android:allowBackup
 		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:12:9-35
 	android:theme
-		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:18:9-47
+		ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:18:9-65
 meta-data#com.google.firebase.ml.vision.DEPENDENCIES
 ADDED from D:\Android\barcode-reader\app\src\main\AndroidManifest.xml:19:9-21:39
 	android:value
