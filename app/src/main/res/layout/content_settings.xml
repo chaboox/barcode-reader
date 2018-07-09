@@ -12,11 +12,11 @@
         android:id="@+id/switch_flash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
 
-        android:layout_alignStart="@+id/groupe"
-        android:layout_marginTop="183dp"
-        android:text="Flash    "
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
+        android:text=""
         tools:layout_editor_absoluteX="239dp"
         tools:layout_editor_absoluteY="16dp" />
 
@@ -34,21 +34,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Firebase" />
+            android:text="F-1" />
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Google Vision" />
+            android:text="G-2" />
 
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="XZing" />
+            android:text="X-3" />
     </RadioGroup>
 
     <TextView
@@ -64,9 +64,9 @@
         android:id="@+id/switch_sound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/switch_flash"
         android:layout_below="@+id/switch_flash"
-        android:text="Sound   " />
+        android:layout_centerHorizontal="true"
+        android:text="" />
 
     <Switch
         android:id="@+id/vibrator"
@@ -74,6 +74,35 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/switch_flash"
         android:layout_below="@+id/switch_sound"
-        android:text="Vibrator" />
+        android:text="" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignStart="@+id/groupe"
+        android:layout_alignTop="@+id/switch_flash"
+        android:text="Flash   "
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_alignTop="@+id/switch_sound"
+
+        android:text="Sound   "
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_alignTop="@+id/vibrator"
+        android:text="Vibrator"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
 </RelativeLayout>

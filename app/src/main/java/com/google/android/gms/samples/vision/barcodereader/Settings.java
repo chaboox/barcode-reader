@@ -38,10 +38,10 @@ public class Settings extends AppCompatActivity {
         RadioButton radioButtonXZing = (RadioButton)findViewById(R.id.radioButton3);
 
 
-        if(MainActivity.activeScan == 2131296394){
+        if(MainActivity.activeScan == 2131296395){
            radioButtonFirebase.setChecked(true);
         }
-        else if (MainActivity.activeScan == 2131296396){
+        else if (MainActivity.activeScan == 2131296397){
            radioButtonXZing.setChecked(true);
 
         }

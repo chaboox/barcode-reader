@@ -2076,7 +2076,7 @@ public final class R {
      * <tr><td>barrier</td><td>2</td><td></td></tr>
      * <tr><td>chains</td><td>4</td><td></td></tr>
      * <tr><td>dimensions</td><td>8</td><td></td></tr>
-     * <tr><td>direct</td><td>1</td><td></td></tr>
+     * <tr><td>direct</td><td>1</td><td>for now only direct & barriers</td></tr>
      * <tr><td>none</td><td>0</td><td></td></tr>
      * <tr><td>standard</td><td>3</td><td></td></tr>
      * </table>
@@ -3921,34 +3921,37 @@ public final class R {
     public static final int textSpacerNoButtons=0x7f0900c3;
     public static final int textSpacerNoTitle=0x7f0900c4;
     public static final int textView=0x7f0900c5;
-    public static final int text_input_password_toggle=0x7f0900c6;
-    public static final int textinput_counter=0x7f0900c7;
-    public static final int textinput_error=0x7f0900c8;
-    public static final int time=0x7f0900c9;
-    public static final int title=0x7f0900ca;
-    public static final int titleDividerNoCustom=0x7f0900cb;
-    public static final int title_template=0x7f0900cc;
-    public static final int toolbar=0x7f0900cd;
-    public static final int top=0x7f0900ce;
-    public static final int topLayout=0x7f0900cf;
-    public static final int topPanel=0x7f0900d0;
-    public static final int touch_outside=0x7f0900d1;
-    public static final int transition_current_scene=0x7f0900d2;
-    public static final int transition_layout_save=0x7f0900d3;
-    public static final int transition_position=0x7f0900d4;
-    public static final int transition_scene_layoutid_cache=0x7f0900d5;
-    public static final int transition_transform=0x7f0900d6;
-    public static final int uniform=0x7f0900d7;
-    public static final int up=0x7f0900d8;
-    public static final int useLogo=0x7f0900d9;
-    public static final int use_flash=0x7f0900da;
-    public static final int vibrator=0x7f0900db;
-    public static final int view_offset_helper=0x7f0900dc;
-    public static final int visible=0x7f0900dd;
-    public static final int wide=0x7f0900de;
-    public static final int withText=0x7f0900df;
-    public static final int wrap=0x7f0900e0;
-    public static final int wrap_content=0x7f0900e1;
+    public static final int textView2=0x7f0900c6;
+    public static final int textView3=0x7f0900c7;
+    public static final int textView4=0x7f0900c8;
+    public static final int text_input_password_toggle=0x7f0900c9;
+    public static final int textinput_counter=0x7f0900ca;
+    public static final int textinput_error=0x7f0900cb;
+    public static final int time=0x7f0900cc;
+    public static final int title=0x7f0900cd;
+    public static final int titleDividerNoCustom=0x7f0900ce;
+    public static final int title_template=0x7f0900cf;
+    public static final int toolbar=0x7f0900d0;
+    public static final int top=0x7f0900d1;
+    public static final int topLayout=0x7f0900d2;
+    public static final int topPanel=0x7f0900d3;
+    public static final int touch_outside=0x7f0900d4;
+    public static final int transition_current_scene=0x7f0900d5;
+    public static final int transition_layout_save=0x7f0900d6;
+    public static final int transition_position=0x7f0900d7;
+    public static final int transition_scene_layoutid_cache=0x7f0900d8;
+    public static final int transition_transform=0x7f0900d9;
+    public static final int uniform=0x7f0900da;
+    public static final int up=0x7f0900db;
+    public static final int useLogo=0x7f0900dc;
+    public static final int use_flash=0x7f0900dd;
+    public static final int vibrator=0x7f0900de;
+    public static final int view_offset_helper=0x7f0900df;
+    public static final int visible=0x7f0900e0;
+    public static final int wide=0x7f0900e1;
+    public static final int withText=0x7f0900e2;
+    public static final int wrap=0x7f0900e3;
+    public static final int wrap_content=0x7f0900e4;
   }
   public static final class integer {
     public static final int abc_config_activityDefaultDur=0x7f0a0000;
@@ -9251,7 +9254,7 @@ public final class R {
      * <tr><td>barrier</td><td>2</td><td></td></tr>
      * <tr><td>chains</td><td>4</td><td></td></tr>
      * <tr><td>dimensions</td><td>8</td><td></td></tr>
-     * <tr><td>direct</td><td>1</td><td></td></tr>
+     * <tr><td>direct</td><td>1</td><td>for now only direct & barriers</td></tr>
      * <tr><td>none</td><td>0</td><td></td></tr>
      * <tr><td>standard</td><td>3</td><td></td></tr>
      * </table>

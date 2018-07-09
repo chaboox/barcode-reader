@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -45,7 +46,7 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
     public static Boolean flash = false;
     public static Boolean vibratorSwitch = true;
     public static Boolean sound = false;
-    public static int activeScan = 2131296394;
+    public static int activeScan = 2131296395;
     public  static List<Barcode> barcode2 = new ArrayList<>();
     public static List<String> barcodeDisplay = new ArrayList<>();
     public static List<BarcodeData> barcodeDisplayData = new ArrayList<>();
@@ -127,11 +128,11 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         if (v.getId() == R.id.read_barcode) {
             // launch barcode activity.
-            if(activeScan == 2131296394){
+            if(activeScan == 2131296395){
                 Intent intent = new Intent(this, LivePreviewActivity.class);
                 startActivity(intent);
             }
-            else if (activeScan == 2131296396){
+            else if (activeScan == 2131296397){
                 Intent intent = new Intent(this, XZingActivity.class);
 
                 startActivity(intent);
@@ -216,7 +217,6 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
                         Snackbar.make(view, dataModelClient.getCode()+"\n"+ dataModelClient.getFormat(), Snackbar.LENGTH_LONG)
                                 .setAction("No action", null).show();
 
-
                     }
                 });
             } else {
@@ -231,7 +231,7 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
     @Override
     public void onBackPressed() {
         AlertDialog.Builder adb=new AlertDialog.Builder(MainActivity.this);
-        adb.setMessage("Are you sure you want to quit ");
+        adb.setMessage("Are you sure you want to quit ?");
         adb.setNegativeButton("Yes", new AlertDialog.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 finishAffinity();
@@ -243,7 +243,9 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
 
 
         public void mailSender(){
-            String combinedString =   "\"Date\",\"heure\",\"Scan\"";
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+            String combinedString =   "\"Date\",\"Heure\",\"Scan\"";
             for(BarcodeData barcodeData :barcodeDisplayData){
                 combinedString = combinedString +"\n"+"\"" + barcodeData.getDate() +"\",\"" + barcodeData.getHour() + "\",\"" + barcodeData.getCode() +  "\"";
             }
@@ -275,7 +277,7 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
             Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("plain/text");
                 i.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
-                i.putExtra(Intent.EXTRA_EMAIL, new String[] { "chaboox@gmail.com" });
+                i.putExtra(Intent.EXTRA_EMAIL, new String[] { "m.amara@mcq-scan.com" });
                 i.putExtra(Intent.EXTRA_SUBJECT, "Résultat du scan");
                 i.putExtra(Intent.EXTRA_TEXT, "");
                 startActivity(Intent.createChooser(i, "E-mail"));
