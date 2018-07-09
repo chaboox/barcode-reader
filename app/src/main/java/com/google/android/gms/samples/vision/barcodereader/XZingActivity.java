@@ -52,10 +52,11 @@ public class XZingActivity extends AppCompatActivity implements ZXingScannerView
        if(!MainActivity.barcodeDisplay.contains(result.getText())) {
             MainActivity.barcodeDisplay.add(result.getText());
            int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-           int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
+           String currentMinute = Calendar.getInstance().get(Calendar.MINUTE)+"";
            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
            Calendar c = Calendar.getInstance();
            String date = sdf.format(c.getTime());
+           if(currentMinute.length() == 1) currentMinute = "0"+currentMinute;
            MainActivity.barcodeDisplayData.add(new BarcodeData(result.getText(), "Code 39",currentHour+":"+currentMinute,date  ));
            if(toast != null)
                toast.cancel();
@@ -70,7 +71,7 @@ public class XZingActivity extends AppCompatActivity implements ZXingScannerView
          toast.cancel();
          toast = Toast.makeText(getApplicationContext(), result.getText(), Toast.LENGTH_SHORT);
          toast.show();
-        zXingScannerView.resumeCameraPreview(this);}
+         zXingScannerView.resumeCameraPreview(this);}
 
     }
     @Override

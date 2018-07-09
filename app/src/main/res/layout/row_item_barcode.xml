@@ -39,8 +39,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/code"
-
-        android:text="TextView" />
+        android:textColor="#777"
+        android:text="Hour" />
 
     <TextView
         android:id="@+id/date"
@@ -50,8 +50,8 @@
         android:layout_below="@+id/hour"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp"
-
-        android:text="TextView" />
+        android:textColor="#777"
+        android:text="Date" />
 
 
 </RelativeLayout>

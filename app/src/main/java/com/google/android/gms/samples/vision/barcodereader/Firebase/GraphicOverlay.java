@@ -2,6 +2,8 @@ package com.google.android.gms.samples.vision.barcodereader.Firebase;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -141,6 +143,11 @@ public class GraphicOverlay extends View {
             for (Graphic graphic : graphics) {
                 graphic.draw(canvas);
             }
+            Paint paint = new Paint();
+            paint.setColor(Color.RED);
+            paint.setStrokeWidth(1f);
+            canvas.drawLine(canvas.getWidth()/8, canvas.getHeight()/2, canvas.getWidth()-canvas.getWidth()/8, canvas.getHeight()/2, paint);
+
         }
     }
 }

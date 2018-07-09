@@ -72,10 +72,11 @@ public class BarcodeGraphic extends Graphic {
        // canvas.drawText(barcode.getRawValue(), rect.left, rect.bottom, barcodePaint);
         if(!MainActivity.barcodeDisplay.contains(barcode.getDisplayValue())){
             int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-            int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
+            String currentMinute = Calendar.getInstance().get(Calendar.MINUTE)+"";
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             Calendar c = Calendar.getInstance();
             String date = sdf.format(c.getTime());
+            if(currentMinute.length() == 1) currentMinute = "0"+currentMinute;
             MainActivity.barcodeDisplayData.add(new BarcodeData(barcode.getDisplayValue(), "Code 39",currentHour+":"+currentMinute,date  ));
             MainActivity.barcodeDisplay.add(barcode.getDisplayValue());
             if(toast != null)

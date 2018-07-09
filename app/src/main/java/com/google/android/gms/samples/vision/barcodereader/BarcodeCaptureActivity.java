@@ -450,10 +450,11 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
                (new ToneGenerator(AudioManager.STREAM_MUSIC, 100)).startTone(ToneGenerator.TONE_CDMA_PIP,150);
            MainActivity.barcodeDisplay.add(barcode.displayValue);
            int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-           int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
+           String currentMinute = Calendar.getInstance().get(Calendar.MINUTE)+"";
            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
            Calendar c = Calendar.getInstance();
            String date = sdf.format(c.getTime());
+           if(currentMinute.length() == 1) currentMinute = "0"+currentMinute;
            MainActivity.barcodeDisplayData.add(new BarcodeData(barcode.displayValue, "Code 39", currentHour + ":" + currentMinute, date));
        }
     }
