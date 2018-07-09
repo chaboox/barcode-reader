@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
@@ -80,10 +82,10 @@ public class BarcodeGraphic extends Graphic {
                 toast.cancel();
             toast = Toast.makeText(getApplicationContext(), barcode.getDisplayValue(), Toast.LENGTH_SHORT);
             toast.show();
-            Vibrator vibrator = (Vibrator) LivePreviewActivity.c.getSystemService(Context.VIBRATOR_SERVICE);
-
-            // if (vibrator.hasVibrator())
-            vibrator.vibrate(200); // for 200 ms
+            if(MainActivity.vibratorSwitch)
+            ((Vibrator) LivePreviewActivity.c.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(200); // for 200 ms
+            if(MainActivity.sound)
+            (new ToneGenerator(AudioManager.STREAM_MUSIC, 100)).startTone(ToneGenerator.TONE_CDMA_PIP,150);
         }
     }
 }

@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -30,6 +32,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.samples.vision.barcodereader.Firebase.LivePreviewActivity;
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSource;
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSourcePreview;
 
@@ -56,7 +59,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     public static final String AutoFocus = "AutoFocus";
     public static final String UseFlash = "UseFlash";
     public static final String BarcodeObject = "Barcode";
-
+    private Toast toast;
     private CameraSource mCameraSource;
     private CameraSourcePreview mPreview;
     public static GraphicOverlay<BarcodeGraphic> mGraphicOverlay;
@@ -434,18 +437,25 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         //do something with barcode data returned
         Log.d(TAG, "onBarcodeDetected: "+barcode.rawValue+" "+barcode.format+" "+barcode.valueFormat);
 
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-       // if (vibrator.hasVibrator())
-            vibrator.vibrate(200); // for 200 ms
-       if((!MainActivity.barcodeDisplay.contains(barcode.displayValue)) && (barcode != null))
-            MainActivity.barcodeDisplay.add(barcode.displayValue);
-        int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Calendar c = Calendar.getInstance();
-        String date = sdf.format(c.getTime());
-        MainActivity.barcodeDisplayData.add(new BarcodeData(barcode.displayValue, "Code 39",currentHour+":"+currentMinute,date  ));
 
+       if((!MainActivity.barcodeDisplay.contains(barcode.displayValue)) && (barcode != null)) {
+           if(toast != null)
+               toast.cancel();
+           /*String s = barcode.displayValue;
+           toast = Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT);
+           toast.show();*/
+           if(MainActivity.vibratorSwitch)
+               ((Vibrator) LivePreviewActivity.c.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(200); // for 200 ms
+           if(MainActivity.sound)
+               (new ToneGenerator(AudioManager.STREAM_MUSIC, 100)).startTone(ToneGenerator.TONE_CDMA_PIP,150);
+           MainActivity.barcodeDisplay.add(barcode.displayValue);
+           int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+           int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
+           SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+           Calendar c = Calendar.getInstance();
+           String date = sdf.format(c.getTime());
+           MainActivity.barcodeDisplayData.add(new BarcodeData(barcode.displayValue, "Code 39", currentHour + ":" + currentMinute, date));
+       }
     }
     @Override
     public void onBackPressed() {

@@ -4,8 +4,10 @@ package com.google.android.gms.samples.vision.barcodereader;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +29,11 @@ import com.google.android.gms.vision.barcode.Barcode;
 
 import junit.framework.Test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +42,12 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
 
     // use a compound button so either checkbox or switch widgets work.
     private CompoundButton autoFocus;
-    private CompoundButton useFlash;
+   // private CompoundButton useFlash;
     private TextView statusMessage;
     public static Boolean flash = false;
+    public static Boolean vibratorSwitch = true;
+    public static Boolean sound = false;
+    public static int activeScan = 2131296394;
     public  static List<Barcode> barcode2 = new ArrayList<>();
     public static List<String> barcodeDisplay = new ArrayList<>();
     public static List<BarcodeData> barcodeDisplayData = new ArrayList<>();
@@ -52,8 +62,14 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+       // Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+       //setSupportActionBar(myToolbar);
+       /* myToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onMenuItemClick:YOO2 ");
+            }
+        });
         myToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -61,25 +77,23 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
                 Log.d(TAG, "onMenuItemClick:YOO ");
                 return true;
             }
-        });
+        });*/
+
         listView=(ListView)findViewById(R.id.list_view);
         statusMessage = (TextView)findViewById(R.id.status_message);
         autoFocus = (CompoundButton) findViewById(R.id.auto_focus);
-        useFlash = (CompoundButton) findViewById(R.id.use_flash);
+        //useFlash = (CompoundButton) findViewById(R.id.use_flash);
         dataModelBarcodes = new ArrayList<>();
-        findViewById(R.id.readbarcodexz).setOnClickListener(this);
         findViewById(R.id.read_barcode).setOnClickListener(this);
         findViewById(R.id.clear).setOnClickListener(this);
-        findViewById(R.id.firebase).setOnClickListener(this);
-        String test =" ";
+        findViewById(R.id.send).setOnClickListener(this);
+
         if(barcodeDisplay.size() != 0) {
             if(barcodeDisplayData.size() != 0)
                 for (BarcodeData bd  :barcodeDisplayData)
                 {
                     // test = test + "  " + s;
                     dataModelBarcodes.add(new DataModelBarcode(bd.getCode(), "Code 39", bd.getHour(), bd.getDate()));
-
-
                 }
                 else
             for (String s : barcodeDisplay) {
@@ -95,7 +109,7 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    DataModelBarcode dataModelClient = dataModelBarcodes.get(position);
+                    DataModelBarcode dataModelBarcode = dataModelBarcodes.get(position);
 
                    /* Snackbar.make(view, dataModelClient.getCode()+"\n"+ dataModelClient.getFormat(), Snackbar.LENGTH_LONG)
                             .setAction("No action", null).show();
@@ -110,6 +124,7 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
             });
         }
 
+
     }
 
     @Override
@@ -118,7 +133,7 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
         Log.d(TAG, "DKHALE: ");
         switch (item.getItemId()) {
             case R.id.setting_button:
-              Intent intent = new Intent(this, SettingsActivity.class);
+              Intent intent = new Intent(this, Settings.class);
               startActivity(intent);
                 return true;
 
@@ -146,31 +161,30 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
      */
     @Override
     public void onClick(View v) {
+        Log.d(TAG, "onMenuItemClick:YOO2 ");
         if (v.getId() == R.id.read_barcode) {
             // launch barcode activity.
+            if(activeScan == 2131296394){
+                Intent intent = new Intent(this, LivePreviewActivity.class);
+                startActivity(intent);
+            }
+            else if (activeScan == 2131296396){
+                Intent intent = new Intent(this, XZingActivity.class);
 
-           Intent intent = new Intent(this, BarcodeCaptureActivity.class);
-           //auto focus always on
-            intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
-            intent.putExtra(BarcodeCaptureActivity.UseFlash, useFlash.isChecked());
+                startActivity(intent);
+            }
+            else {
+                Intent intent = new Intent(this, BarcodeCaptureActivity.class);
 
-            startActivityForResult(intent, RC_BARCODE_CAPTURE);
+                intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
+                intent.putExtra(BarcodeCaptureActivity.UseFlash, flash);
+
+                startActivityForResult(intent, RC_BARCODE_CAPTURE);
+            }
+
         }
-       else if (v.getId() == R.id.readbarcodexz) {
-            // launch barcode activity.
 
-           Intent intent = new Intent(this, LivePreviewActivity.class);
-
-            startActivity(intent);
-        } else if (v.getId() == R.id.firebase) {
-            // launch barcode activity.
-            flash = useFlash.isChecked();
-            Intent intent = new Intent(this, LivePreviewActivity.class);
-
-            startActivity(intent);
-        }
         else if (v.getId() == R.id.clear) {
-
 
            barcode2.clear();
            barcodeDisplay.clear();
@@ -178,6 +192,15 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
            listView.setAdapter(adapter);
            dataModelBarcodes.clear();
             adapter= new CustomAdapterBarcode(dataModelBarcodes,getApplicationContext());
+
+        }
+        else if (v.getId() == R.id.send) {
+            if(MainActivity.barcodeDisplayData.size() == 0)
+                Toast.makeText(getApplicationContext(),"Please scan first",Toast.LENGTH_SHORT).show();
+
+            else
+            mailSender();
+
 
         }
 
@@ -267,10 +290,56 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
         adb.setMessage("Are you sure you want to quit ");
         adb.setNegativeButton("Yes", new AlertDialog.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                finish();
+                finishAffinity();
             }});
         adb.setPositiveButton("No", null);
         adb.show();
     }
 
+
+        public void mailSender(){
+            String combinedString =   "\"Date\",\"heure\",\"Scan\"";
+            for(BarcodeData barcodeData :barcodeDisplayData){
+                combinedString = combinedString +"\n"+"\"" + barcodeData.getDate() +"\",\"" + barcodeData.getHour() + "\",\"" + barcodeData.getCode() +  "\"";
+            }
+
+            File file   = null;
+            File root   = Environment.getExternalStorageDirectory();
+            if (root.canWrite()){
+                File dir    =   new File (root.getAbsolutePath() + "/PersonData");
+                Log.d(TAG, "onCreateTT: "+root.getAbsolutePath());
+                dir.mkdirs();
+                file   =   new File(dir, "Data.csv");
+                FileOutputStream out   =   null;
+                try {
+                    out = new FileOutputStream(file);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    out.write(combinedString.getBytes());
+                    Log.d(TAG, "onCreate: TT");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("plain/text");
+                i.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+                i.putExtra(Intent.EXTRA_EMAIL, new String[] { "chaboox@gmail.com" });
+                i.putExtra(Intent.EXTRA_SUBJECT, "Résultat du scan");
+                i.putExtra(Intent.EXTRA_TEXT, "");
+                startActivity(Intent.createChooser(i, "E-mail"));
+
+
+        }
+
+
 }
+

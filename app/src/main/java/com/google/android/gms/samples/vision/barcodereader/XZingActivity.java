@@ -2,6 +2,8 @@ package com.google.android.gms.samples.vision.barcodereader;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,10 +57,14 @@ public class XZingActivity extends AppCompatActivity implements ZXingScannerView
            Calendar c = Calendar.getInstance();
            String date = sdf.format(c.getTime());
            MainActivity.barcodeDisplayData.add(new BarcodeData(result.getText(), "Code 39",currentHour+":"+currentMinute,date  ));
-
-           Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-           // if (vibrator.hasVibrator())
-           vibrator.vibrate(200); // for 200 ms
+           if(toast != null)
+               toast.cancel();
+           toast = Toast.makeText(getApplicationContext(), result.getText(), Toast.LENGTH_SHORT);
+           toast.show();
+           if(MainActivity.vibratorSwitch)
+               ((Vibrator) LivePreviewActivity.c.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(200); // for 200 ms
+           if(MainActivity.sound)
+               (new ToneGenerator(AudioManager.STREAM_MUSIC, 100)).startTone(ToneGenerator.TONE_CDMA_PIP,150);
         }
         if(toast != null)
          toast.cancel();

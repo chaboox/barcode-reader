@@ -92,6 +92,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javaPrecompile" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/prebuild" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
@@ -122,11 +123,9 @@
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-base-15.0.4" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-v4-26.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-compat-26.1.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.tensorflow:tensorflow-lite-0.1.7" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-identifier-15.0.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-clearcut-15.0.1" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:recyclerview-v7-26.1.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-ml-model-interpreter-16.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.zxing:core:3.2.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:common:1.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-vector-drawable-26.1.0" level="project" />
@@ -139,7 +138,6 @@
     <orderEntry type="library" name="Gradle: com.android.support.constraint:constraint-layout-solver:1.1.2@jar" level="project" />
     <orderEntry type="library" name="Gradle: me.dm7.barcodescanner:zxing-1.9" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-measurement-connector-impl-16.0.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-ml-vision-image-label-model-15.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-iid-interop-16.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-analytics-16.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-measurement-connector-16.0.0" level="project" />
