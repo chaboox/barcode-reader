@@ -13,28 +13,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="180dp"
-        android:text=""
-        tools:layout_editor_absoluteX="239dp"
-        tools:layout_editor_absoluteY="16dp" />
+
+        android:layout_below="@+id/tools"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/textView4"
+        android:text="" />
 
     <RadioGroup
-        android:layout_width="wrap_content"
         android:id="@+id/groupe"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="68dp" >
-
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="F-1" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp">
 
         <RadioButton
             android:id="@+id/radioButton2"
@@ -42,6 +33,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="G-2" />
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="F-1" />
 
         <RadioButton
             android:id="@+id/radioButton3"
@@ -56,8 +54,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/switch_flash"
-        android:layout_marginTop="33dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
         android:text="Type of scanner" />
 
     <Switch
@@ -65,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/switch_flash"
-        android:layout_centerHorizontal="true"
+        android:layout_toEndOf="@+id/textView4"
         android:text="" />
 
     <Switch
@@ -81,8 +79,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_alignStart="@+id/groupe"
         android:layout_alignTop="@+id/switch_flash"
+        android:layout_toStartOf="@+id/groupe"
         android:text="Flash   "
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
@@ -102,7 +100,18 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView2"
         android:layout_alignTop="@+id/vibrator"
-        android:text="Vibrator"
+        android:text="Vibrator "
         android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <TextView
+        android:id="@+id/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/groupe"
+        android:layout_centerHorizontal="true"
+        android:text="Tools" />
 
 </RelativeLayout>

@@ -67,7 +67,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     // helper objects for detecting taps and pinches.
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
-
+    private Button done;
     /**
      * Initializes the UI and creates the detector pipeline.
      */
@@ -78,7 +78,15 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
 
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay<BarcodeGraphic>) findViewById(R.id.graphicOverlay);
-
+        done = (Button)findViewById(R.id.done);
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent data = new Intent(BarcodeCaptureActivity.this, MainActivity.class);
+                startActivity(data);
+                finish();
+            }
+        });
         // read parameters from the intent used to launch the activity.
         boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, false);
         boolean useFlash = getIntent().getBooleanExtra(UseFlash, false);
@@ -439,8 +447,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
 
 
        if((!MainActivity.barcodeDisplay.contains(barcode.displayValue)) && (barcode != null)) {
-           if(toast != null)
-               toast.cancel();
+
            /*String s = barcode.displayValue;
            toast = Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT);
            toast.show();*/

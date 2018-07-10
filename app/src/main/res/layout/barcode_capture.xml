@@ -13,7 +13,7 @@
       android:id="@+id/preview"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_weight="100">
+      android:layout_weight="90">
 
     <com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay
         android:id="@+id/graphicOverlay"
@@ -24,8 +24,11 @@
 <Button
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_weight="0"
+    android:layout_weight="10"
     android:text="Done"
+    android:textColor="#000"
+    android:background="#fff"
+    android:layout_margin="0dp"
     android:id="@+id/done"
-    android:visibility="gone"/>
+    android:visibility="visible"/>
 </LinearLayout>

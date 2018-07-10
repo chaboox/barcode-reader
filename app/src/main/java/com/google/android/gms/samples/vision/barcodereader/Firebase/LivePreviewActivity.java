@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
@@ -42,6 +43,7 @@ public final class LivePreviewActivity extends AppCompatActivity
     private CameraSource cameraSource = null;
     private CameraSourcePreview preview;
     private GraphicOverlay graphicOverlay;
+    private Button done;
     private String selectedModel = FACE_DETECTION;
 
     @Override
@@ -62,7 +64,15 @@ public final class LivePreviewActivity extends AppCompatActivity
         if (graphicOverlay == null) {
             Log.d(TAG, "graphicOverlay is null");
         }
-
+        done = (Button)findViewById(R.id.done);
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent data = new Intent(LivePreviewActivity.this, MainActivity.class);
+                startActivity(data);
+                finish();
+            }
+        });
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         List<String> options = new ArrayList<>();
         options.add(FACE_DETECTION);

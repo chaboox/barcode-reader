@@ -75,13 +75,13 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
                 {
                     dataModelBarcodes.add(new DataModelBarcode(bd.getCode(), "Code 39", bd.getHour(), bd.getDate()));
                 }
-                else
+               /* else
             for (String s : barcodeDisplay) {
                // test = test + "  " + s;
                 dataModelBarcodes.add(new DataModelBarcode(s, "Code 39", "00:00","01/01/2018"));
 
 
-            }
+            }*/
             adapter= new CustomAdapterBarcode(dataModelBarcodes,getApplicationContext());
             listView.setAdapter(adapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
